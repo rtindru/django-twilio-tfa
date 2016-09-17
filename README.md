@@ -1,6 +1,5 @@
 # django-twilio-tfa
-Pluggable module for Two factor authentication using Twilio
-
+Pluggable module for Two factor authentication using Twilio Authy
 
 =====
 Django Two Factor Authentication
