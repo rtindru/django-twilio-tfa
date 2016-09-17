@@ -58,6 +58,10 @@ ROOT_URLCONF = 'django_twilio_tfa.urls'
 
 WSGI_APPLICATION = 'django_twilio_tfa.wsgi.application'
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.contrib.auth.context_processors.auth',
+    'django.contrib.messages.context_processors.messages',
+)
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
