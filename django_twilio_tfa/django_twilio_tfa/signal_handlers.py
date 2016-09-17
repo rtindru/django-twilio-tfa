@@ -21,7 +21,7 @@ def create_user_tfa_profile(sender, instance, **kwargs):
         cc = getattr(instance, cc_field)
 
         if not all([email, phone, cc]):
-            logger.error("Field: {} is None, skipping Authy profile creation".format(field))
+            logger.error("Missing one of email, phone or cc")
             return
 
         uid = create_tfa_profile(email=email, phone_number=phone, country_code=cc)
