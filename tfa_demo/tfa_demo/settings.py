@@ -57,6 +57,8 @@ MIDDLEWARE_CLASSES = (
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
     'django.contrib.messages.context_processors.messages',
+    'allauth.socialaccount.context_processors.socialaccount',
+    'django.template.context_processors.request',
 )
 
 ROOT_URLCONF = 'tfa_demo.urls'
@@ -145,5 +147,6 @@ AUTHENTICATION_BACKENDS = (
 
 SITE_ID = 1
 
-AUTHY_API_KEY = 'dI5MxJYUlu8ar8RJLismMSqMIBmaDte7'
+# AUTHY_API_KEY = 'dI5MxJYUlu8ar8RJLismMSqMIBmaDte7'
+AUTHY_API_KEY = '7TZVaaHRxoio4Ot4fg9BWExc9ZCSQ8cE'
 USER_PROFILE_MODEL = 'tfa_demo.UserProfile'
