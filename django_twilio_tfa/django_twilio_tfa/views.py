@@ -28,5 +28,5 @@ class TFAVerifyView(View):
             return HttpResponseRedirect(next_url)
         else:
             messages.error(request, 'Invalid code, please try again')
-            red_url = '/tfa/verify' + '?next=' + next_url
+            red_url = '/tfa/auth' + '?next=' + next_url
             return HttpResponseRedirect(red_url)
