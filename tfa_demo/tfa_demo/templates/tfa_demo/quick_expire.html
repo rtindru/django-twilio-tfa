@@ -1,9 +1,7 @@
 {% extends "django_twilio_tfa/base.html" %}
 
 {% block head %}
-{% block head_title %}
-TFA Demo:: Expires in {{ expiry }}
-{% endblock head_title %}
+<title>TFA Demo:: Expires in {{ expiry }}</title>
 
 <style>
     body {
@@ -49,6 +47,7 @@ TFA Demo:: Expires in {{ expiry }}
     }
 </style>
 {% endblock head %}
+
 
 {% block content %}
 <div class="container">
