@@ -10,7 +10,8 @@
             {% for message in messages %}
             <div {% if message.tags %} class="alert alert-danger"{% endif %}>
                 <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
-                <span class="sr-only">{{ message }}</span>
+                <span class="sr-only"></span>
+                {{ message }}
             </div>
             {% endfor %}
         </div>
