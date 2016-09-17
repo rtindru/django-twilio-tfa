@@ -12,7 +12,6 @@ def home(request):
     context = Context({})
     return render_to_response('django_twilio_tfa/home.html', context)
 
-
 class HomePageView(TemplateView):
     template_name = 'tfa_demo/home.html'
 
@@ -22,6 +21,20 @@ class HomePageView(TemplateView):
 
     def get_context_data(self, **kwargs):
         return super(HomePageView, self).get_context_data(**kwargs)
+
+
+class QuickExpireView(TemplateView):
+    template_name = 'tfa_demo/quick_expire.html'
+    quick_expiry = 30
+
+    @method_decorator(tfa_required(expires=quick_expiry))
+    def dispatch(self, request, *args, **kwargs):
+        return super(QuickExpireView, self).dispatch(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(QuickExpireView, self).get_context_data(**kwargs)
+        context['expiry'] = self.quick_expiry
+        return context
 
 
 def logout_view(request):
