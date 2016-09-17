@@ -6,7 +6,16 @@
 
 {% block content %}
     <div class="container">
-
+        {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+            <div {% if message.tags %} class="{{ alert alert-danger }}"{% endif %}>
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <span class="sr-only">{{ message }}</span>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
         <div class="text-center">
             <h1>Two Factor Authentication</h1>
             <h4>Please enter the code received on your registered mobile number!</h4>
