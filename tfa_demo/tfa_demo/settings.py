@@ -1,5 +1,5 @@
 """
-Django settings for django_twilio_tfa project.
+Django settings for tfa_demo project.
 
 For more information on this file, see
 https://docs.djangoproject.com/en/1.7/topics/settings/
@@ -10,10 +10,6 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-
-from django.conf import settings
-from django.core.exceptions import ImproperlyConfigured
-
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
 
@@ -21,7 +17,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # See https://docs.djangoproject.com/en/1.7/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '0jdn$b&og=ltj55c9vnatp8(tzxbdo#^6@$_a+b)#60+(8+e-r'
+SECRET_KEY = 'wp0ng=xjbxnn8xn)yx@rn)q6u*fjtyivji22_dclz9omq_9m-o'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -41,7 +37,11 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_twilio_tfa',
-    'authy',
+    'tfa_demo',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'django.contrib.sites',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -54,9 +54,9 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'django_twilio_tfa.urls'
+ROOT_URLCONF = 'tfa_demo.urls'
 
-WSGI_APPLICATION = 'django_twilio_tfa.wsgi.application'
+WSGI_APPLICATION = 'tfa_demo.wsgi.application'
 
 
 # Database
@@ -82,15 +82,63 @@ USE_L10N = True
 
 USE_TZ = True
 
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
 
 
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(filename)s:%(lineno)d:%(funcName)s:: %(message)s'
+        },
+    },
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose',
+        },
+        'exc_file': {
+            'level': 'ERROR',
+            'class': 'logging.FileHandler',
+            'filename': '/tmp/exc.log',
+            'formatter': 'verbose',
+        },
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': '/tmp/deb.log',
+            'formatter': 'verbose',
+        },
+    },
+    'root': {
+        'handlers': ['file', 'exc_file', 'console'],
+        'level': 'DEBUG',
+    },
+}
+
+TEMPLATE_DIRS = (
+    # allauth templates: you could copy this directory into your
+    # project and tweak it according to your needs
+    # os.path.join(PROJECT_ROOT, 'templates', 'uniform', 'allauth'),
+    # example project specific templates
+    os.path.join(BASE_DIR, 'templates', 'plain', 'example'),
+)
+
+AUTHENTICATION_BACKENDS = (
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+SITE_ID = 1
+
 AUTHY_API_KEY = 'dI5MxJYUlu8ar8RJLismMSqMIBmaDte7'
-USER_PROFILE_MODEL = getattr(settings, 'USER_PROFILE_MODEL')
-USER_UID_FIELD = getattr(settings, 'USER_UID_FIELD', 'uid')
-USER_EMAIL_FIELD = getattr(settings, 'USER_EMAIL_FIELD', 'email')
-USER_PHONE_FIELD = getattr(settings, 'USER_PHONE_FIELD', 'phone')
-USER_CC_FIELD = getattr(settings, 'USER_CC_FIELD', 'country_code')
+USER_PROFILE_MODEL = 'tfa_demo.UserProfile'

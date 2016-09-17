@@ -1,0 +1,31 @@
+{% extends "django_twilio_tfa/base.html" %}
+
+{% block head_title %}
+    Two-Factor Authentication
+{% endblock head_title %}
+
+{% block content %}
+    <div class="container">
+
+        <div class="text-center">
+            <h1>Two Factor Authentication</h1>
+            <h4>Please enter the code received on your registered mobile number!</h4>
+            <br>
+            <form class="form-inline" method="post" action="/tfa/verify">
+                {% csrf_token %}
+                <div class="form-group hidden">
+                    <label class="sr-only" for="code">Redirect URL</label>
+                    <input type="text" name="next" class="form-control hidden" value="{{ next_url }}">
+                </div>
+                <div class="form-group">
+                    <label class="sr-only" for="code">Email address</label>
+                    <input type="number" class="form-control input-lg" name="code" placeholder="1234567">
+                </div>
+                <button type="submit" class="btn btn-success btn-lg">Sign in</button>
+            </form>
+
+        </div>
+
+    </div><!-- /.container -->
+
+{% endblock content %}

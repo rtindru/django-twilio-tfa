@@ -2,22 +2,24 @@
 from __future__ import unicode_literals
 
 from django.db import models, migrations
+from django.conf import settings
 
 
 class Migration(migrations.Migration):
 
     dependencies = [
+        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='TFAProfile',
+            name='UserProfile',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('authy_id', models.IntegerField(unique=True, null=True)),
-                ('email', models.EmailField(unique=True, max_length=75)),
+                ('uid', models.IntegerField(unique=True)),
                 ('phone_number', models.IntegerField()),
                 ('country_code', models.IntegerField()),
+                ('user', models.OneToOneField(to=settings.AUTH_USER_MODEL)),
             ],
             options={
             },
