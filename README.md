@@ -1,6 +1,5 @@
 # django-twilio-tfa
-Pluggable module for Two factor authentication using Twilio
-
+Pluggable module for Two factor authentication using Twilio Authy
 
 =====
 Django Two Factor Authentication
@@ -12,11 +11,11 @@ Detailed documentation is in the "docs" directory.
 
 Installation
 -----------
-The installer is available under django-tfa/dist/
+The installer package is available under django-tfa/dist/
 
-Example:
+**Example:**
 
-pip install django-tfa-0.1.1.tar.gz 
+`pip install django-tfa-0.1.1.tar.gz `
 
 
 Quick start
