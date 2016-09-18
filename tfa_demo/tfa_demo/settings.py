@@ -53,14 +53,14 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
-
+"""
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
     'django.contrib.messages.context_processors.messages',
     'allauth.socialaccount.context_processors.socialaccount',
     'django.template.context_processors.request',
 )
-
+"""
 ROOT_URLCONF = 'tfa_demo.urls'
 
 WSGI_APPLICATION = 'tfa_demo.wsgi.application'
@@ -150,3 +150,9 @@ SITE_ID = 1
 # AUTHY_API_KEY = 'dI5MxJYUlu8ar8RJLismMSqMIBmaDte7'
 AUTHY_API_KEY = '7TZVaaHRxoio4Ot4fg9BWExc9ZCSQ8cE'
 USER_PROFILE_MODEL = 'tfa_demo.UserProfile'
+
+ACCOUNT_SIGNUP_FORM_CLASS = "tfa_demo.forms.SignupForm"
+
+ACCOUNT_EMAIL_REQUIRED = True
+
+ACCOUNT_EMAIL_VERIFICATION = None
